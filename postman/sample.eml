@@ -1,0 +1,6 @@
+From: Example <sender@example.com>
+To: Tester <tester@example.com>
+Subject: Account verification test
+Content-Type: text/plain; charset=utf-8
+
+Your account will be suspended. Verify your password immediately at https://account-verify.example.com/login

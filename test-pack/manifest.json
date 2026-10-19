@@ -1,0 +1,177 @@
+{
+  "description": "Curated functional/quality test set, not an independently verified benchmark. Phishing labels are manual assessments of corpus lures. Exploratory advertising examples have no phishing ground truth. Benign controls are synthetic. Real-world source samples may overlap model training data; no held-out claim.",
+  "emails": [
+    {
+      "id": "advance-fee",
+      "label": "phishing",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/b037056b02c300ba/1.0.0/emails/38fad061d58ca1e4170f8c5bb01d38abaf647fc9ed61ef5defde29bfeb49e9b7.eml",
+      "source_file": "source-emails/38fad061d58ca1e4170f8c5bb01d38abaf647fc9ed61ef5defde29bfeb49e9b7.eml",
+      "source_sha256": "38fad061d58ca1e4170f8c5bb01d38abaf647fc9ed61ef5defde29bfeb49e9b7",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\advance-fee.eml",
+      "text": "$27.6M follow up..\nGood day, Did you get my last email about the business of $27.6 million? I hope this message finds you well. I am writing to discuss about my last email business proposal deal which amounts to $27.6 million. After careful evaluation, I believe it would be most equitable to share the funds equally, resulting in a 50% distribution for each party. Trust the process we can get this. Best regards, Peggy. mafsg21",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "parcel-payment",
+      "label": "phishing",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/b037056b02c300ba/1.0.0/emails/4ccb4568d9b6c480d4bff4f3444a49a174af06546343c030918edd9ef55b4089.eml",
+      "source_file": "source-emails/4ccb4568d9b6c480d4bff4f3444a49a174af06546343c030918edd9ef55b4089.eml",
+      "source_sha256": "4ccb4568d9b6c480d4bff4f3444a49a174af06546343c030918edd9ef55b4089",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\parcel-payment.eml",
+      "text": "Shipping SGOS-PRV2105000044\nDear Customer, Package - SG / 558557965954. We\u2019ve recently checked your delivery, And we noticed that its still on hold in our post due to non-payment of 2.99 SGD, In order to receive your delivery we ask you for the second time to pay your fees. can now view your bill and make payment via Singapore Post , or click here . This is a system-generated e-mail. Please do not reply to this email. Thank you.",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "delivery-reschedule",
+      "label": "phishing",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/b037056b02c300ba/1.0.0/emails/81e9afbb22618099c85b2aee905d684b74ff65598ff5a0b82c7bffe327fca6d9.eml",
+      "source_file": "source-emails/81e9afbb22618099c85b2aee905d684b74ff65598ff5a0b82c7bffe327fca6d9.eml",
+      "source_sha256": "81e9afbb22618099c85b2aee905d684b74ff65598ff5a0b82c7bffe327fca6d9",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\delivery-reschedule.eml",
+      "text": "Your Delivery \u2013 (IDS_608765737) 19:19:04\nDear Customer, Unfortunately, we were unable to deliver your parcel today. Please confirm the next steps to reschedule the delivery. 223 Date: 17.03.2026 Reference Number: [REF.12835033544] Reschedule delivery: hxxps://tinyurl[.]com/26qjd838 Parcel Number: SG68336 Kind regards, Customer Service Team",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "compensation",
+      "label": "phishing",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/b037056b02c300ba/1.0.0/emails/85cfaf1ad8f77c57ac820edcd8b0a626e8d69878b0f4c0596456b727f75e5ab9.eml",
+      "source_file": "source-emails/85cfaf1ad8f77c57ac820edcd8b0a626e8d69878b0f4c0596456b727f75e5ab9.eml",
+      "source_sha256": "85cfaf1ad8f77c57ac820edcd8b0a626e8d69878b0f4c0596456b727f75e5ab9",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\compensation.eml",
+      "text": "Dear Friend,\nDear Friend, How are you today? Hope all is well with you and your family? I hope this mail meets you in a perfect condition. I am using this opportunity to thank you for your great effort to our unfinished transfer of funds into your account due to one reason or the other best known to you. But I want to inform you that I have successfully transferred the Check out of the company to someone else who was capable of assisting me in this great venture Due to your effort, sincerity, courage and trust worthiness you showed at the course of the transaction I want to compensate you and show my gratitude to you with the sum $250,000.00 (two hundred Fifty thousand united states Dollars)in addition to your lottery winnings of $500 thousand now amounting to $750,000.00(seven hundred and fifty thousand United States Dollars). My dear friend, I will like you to contact the finance house for the collection of this international certified bank draft. The name and contact address of the Person with your Check is Mr. Alfred Morris, is as follows. COMPENSATION AND FINANCE HOUSE HEAD OFFICE CONTACT AGENT: MR.ALFRED MORRIS. Email: (mralfredmorris3@gmail.com) At the moment, I am very busy here because of the investment projects which myself and my new partner are having at hand. Finally, remember that I have forwarded instructions to the finance house on your behalf to send the bank draft to you as soon as you contact them without delay. Please I will like you to accept this token with good faith as this is from the bottom of my heart. Thanks and God bless you and your family. Hope to hear from you soon. My sincere advice to you as a Christian is that you should endeavor to pay your tithe to a bible believing church when you get the prize. Best Regards, Mrs. Sherry Williams N:B So sorry for having contacted you for so long. It was due to the fact that I was responding to medical treatment. I went for surgery and ever since I came back I couldn't locate you until I finally made it. That was why I am contacting you back to inform you that I finally made it as a result of this. I had to compensate you with this offer.",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "inheritance",
+      "label": "phishing",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/b037056b02c300ba/1.0.0/emails/f2b44fc0df1f6429ad04af022f9d049b8a7c99788feae5a8bcf7d51fa64825d3.eml",
+      "source_file": "source-emails/f2b44fc0df1f6429ad04af022f9d049b8a7c99788feae5a8bcf7d51fa64825d3.eml",
+      "source_sha256": "f2b44fc0df1f6429ad04af022f9d049b8a7c99788feae5a8bcf7d51fa64825d3",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\inheritance.eml",
+      "text": "Re: Probate Approved- Inheritance Act  SPM 070526\nHello I am a legal representative of the Late Ms. Sophia who shared your surname and recently passed away abroad with no known heirs. Please respond back to me urgently with your mobile number and best time to call you. Regards, For Eric's Law Chambers LLC",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "investment-lure",
+      "label": "phishing",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/b037056b02c300ba/1.0.0/emails/07440dc598cc82b3ca55a4920d9311de4bed14e2dbaf4866cb5f676460cf94e8.eml",
+      "source_file": "source-emails/07440dc598cc82b3ca55a4920d9311de4bed14e2dbaf4866cb5f676460cf94e8.eml",
+      "source_sha256": "07440dc598cc82b3ca55a4920d9311de4bed14e2dbaf4866cb5f676460cf94e8",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\investment-lure.eml",
+      "text": "The Singapore Bank introduces new opportunities for everyone.\nJason Moo, CEO of Singapore Bank, has unveiled a revelation that has left many astonished. His current offering presents an extraordinary solution to numerous challenges faced by all. Delve into the depths of this article where every aspect is meticulously detailed. See the interview",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "health-advertising",
+      "label": "exploratory",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/cd73657af8d9165a/1.0.0/emails/23340c1b08c006e32560286b964befe2692b2357bd4d82d5c3eccf440de57567.eml",
+      "source_file": "source-emails/23340c1b08c006e32560286b964befe2692b2357bd4d82d5c3eccf440de57567.eml",
+      "source_sha256": "23340c1b08c006e32560286b964befe2692b2357bd4d82d5c3eccf440de57567",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\health-advertising.eml",
+      "text": "redacted; [WARNING]: The Prostate 'Cure' That Could Change Everything\ufffd\ufffd\ufffdTemporarily Available! \nWatch This Before It's Taken Down: The Natural Prostate Protocol DISCOVERED: The Hidden Enemy Inside Your Prostate!",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "testosterone-advertising",
+      "label": "exploratory",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/cd73657af8d9165a/1.0.0/emails/3bb65af8afe85e77d724b0b021ed5cf568c85fb3a4e660e6953d94a9ac5d37ec.eml",
+      "source_file": "source-emails/3bb65af8afe85e77d724b0b021ed5cf568c85fb3a4e660e6953d94a9ac5d37ec.eml",
+      "source_sha256": "3bb65af8afe85e77d724b0b021ed5cf568c85fb3a4e660e6953d94a9ac5d37ec",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\testosterone-advertising.eml",
+      "text": "OTC Testosterone \nNo needles, No doctor needed",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "grant-notification",
+      "label": "exploratory",
+      "origin": "real-world redacted corpus; normalized text derivative",
+      "source": "https://raw.githubusercontent.com/cw-l/email-corpus/75b488148d5560109d6fb0c6646d417d7271f66a/submissions/b037056b02c300ba/1.0.0/emails/3daaf474610cfbc37e6550a65ec8e4a71cdbeb79edc0117b244eb354026c4084.eml",
+      "source_file": "source-emails/3daaf474610cfbc37e6550a65ec8e4a71cdbeb79edc0117b244eb354026c4084.eml",
+      "source_sha256": "3daaf474610cfbc37e6550a65ec8e4a71cdbeb79edc0117b244eb354026c4084",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\grant-notification.eml",
+      "text": "-- Hope this email reaches you in good health and well-being. This is to inform you that your grant support fund is now available. Please see the disbursement reference number below: (This will be provided in subsequent email):- \\u2022 Disbursement Reference Number: GSI*******/*****/2*** Kindly acknowledge receipt of this notification. If you have any questions or require further assistance, please contact us immediately. Notification Department \\U0001f30dGSI\ufffd",
+      "changes": "Plain-text MIME reconstruction; HTML/styles and attachment parts removed; sender/recipient replaced; source defanging retained. No semantic truncation."
+    },
+    {
+      "id": "benign-meeting",
+      "label": "benign",
+      "origin": "synthetic comparison control",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\benign-meeting.eml",
+      "text": "Team meeting\nHi Alex, our team meeting is tomorrow at 10. Please bring your notes. See you then."
+    },
+    {
+      "id": "benign-password-guidance",
+      "label": "benign",
+      "origin": "synthetic comparison control",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\benign-password-guidance.eml",
+      "text": "Security guidance\nNever share your password or one-time code. If you need to change your password, open the official app yourself."
+    },
+    {
+      "id": "benign-invoice-discussion",
+      "label": "benign",
+      "origin": "synthetic comparison control",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\benign-invoice-discussion.eml",
+      "text": "Invoice discussion\nCould you confirm whether invoice 1042 was received? There is no change to our bank details. Please use our usual contact number if you have questions."
+    },
+    {
+      "id": "benign-delivery-update",
+      "label": "benign",
+      "origin": "synthetic comparison control",
+      "email": "C:\\Projects\\Maso\\test-pack\\emails\\benign-delivery-update.eml",
+      "text": "Delivery update\nYour library book has arrived at the front desk. You can collect it during normal opening hours. No payment is required."
+    }
+  ],
+  "qr": [
+    {
+      "id": "qr-advance-fee",
+      "label": "phishing",
+      "origin": "generated QR encoding test-case text; not an original attack QR",
+      "file": "C:\\Projects\\Maso\\test-pack\\qr\\advance-fee.png",
+      "payload": "$27.6M follow up..\nGood day, Did you get my last email about the business of $27.6 million? I hope this message finds you well. I am writing to discuss about my last email business proposal deal which amounts to $27.6 million. After careful evaluation, I believe it would be most equitable to share the funds equally, resulting in a 50% distribution ",
+      "derived_from": "advance-fee",
+      "transformation": "First 350 characters of source-derived text; QR decoding fixture, not full email classification."
+    },
+    {
+      "id": "qr-parcel-payment",
+      "label": "phishing",
+      "origin": "generated QR encoding test-case text; not an original attack QR",
+      "file": "C:\\Projects\\Maso\\test-pack\\qr\\parcel-payment.png",
+      "payload": "Shipping SGOS-PRV2105000044\nDear Customer, Package - SG / 558557965954. We\u2019ve recently checked your delivery, And we noticed that its still on hold in our post due to non-payment of 2.99 SGD, In order to receive your delivery we ask you for the second time to pay your fees. can now view your bill and make payment via Singapore Post , or click here ",
+      "derived_from": "parcel-payment",
+      "transformation": "First 350 characters of source-derived text; QR decoding fixture, not full email classification."
+    },
+    {
+      "id": "qr-benign-meeting",
+      "label": "benign",
+      "origin": "generated QR encoding test-case text; not an original attack QR",
+      "file": "C:\\Projects\\Maso\\test-pack\\qr\\benign-meeting.png",
+      "payload": "Team meeting\nHi Alex, our team meeting is tomorrow at 10. Please bring your notes. See you then.",
+      "derived_from": "benign-meeting",
+      "transformation": "First 350 characters of source-derived text; QR decoding fixture, not full email classification."
+    },
+    {
+      "id": "qr-benign-password-guidance",
+      "label": "benign",
+      "origin": "generated QR encoding test-case text; not an original attack QR",
+      "file": "C:\\Projects\\Maso\\test-pack\\qr\\benign-password-guidance.png",
+      "payload": "Security guidance\nNever share your password or one-time code. If you need to change your password, open the official app yourself.",
+      "derived_from": "benign-password-guidance",
+      "transformation": "First 350 characters of source-derived text; QR decoding fixture, not full email classification."
+    },
+    {
+      "id": "qr-benign-url",
+      "label": "exploratory",
+      "origin": "synthetic URL control",
+      "file": "C:\\Projects\\Maso\\test-pack\\qr\\benign-url.png",
+      "payload": "https://example.com"
+    }
+  ]
+}

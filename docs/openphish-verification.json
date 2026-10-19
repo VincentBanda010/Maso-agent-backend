@@ -1,0 +1,20 @@
+{
+  "live_feed_download": true,
+  "listed_url_match": true,
+  "control_url_match": false,
+  "listed_url_sha256": "1c3fbc7c48a55be8ee224ddd4cf0dcfbeae445322347025fc50d988064bbc3a0",
+  "real_model_inference": "completed",
+  "risk_level": "Dangerous",
+  "model_risk_level": "Dangerous",
+  "safety_status": "unsafe",
+  "feed": {
+    "provider": "OpenPhish Community",
+    "status": "ready",
+    "entries": 300,
+    "fetched_at": "2026-10-19T15:02:05.153645+00:00",
+    "upstream_modified": "",
+    "feed_sha256": "0447401a73d47149cef29e04b707f4a62312338e1ea97bc8548f25091370fb59",
+    "refresh_interval_seconds": 43200
+  },
+  "note": "Listed URLs were not opened. A no-match is not a safety guarantee. No raw feed URLs are redistributed in this report."
+}

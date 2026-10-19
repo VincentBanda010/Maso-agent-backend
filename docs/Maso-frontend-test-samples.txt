@@ -1,0 +1,136 @@
+MASO FRONTEND TEST SAMPLES
+==========================
+
+Copy each sample into Maso separately unless instructed otherwise.
+Enable "Check OpenPhish scam reports" for tests involving links.
+
+WARNING: The reported phishing links below are for pasting into Maso only.
+Do not open them in your browser, submit credentials, or make payments.
+They were retrieved from OpenPhish on 19 October 2026. Feed entries change.
+
+1. KNOWN PHISHING LINK - OPENPHISH
+--------------------------------
+http://xunqelo-mpt-favzari-h4d8me63.pages.dev/
+
+Expected: Unsafe, explicitly attributed to an OpenPhish report if still listed.
+A model-only Dangerous result does not prove the OpenPhish check worked.
+
+Additional links retrieved from the same feed:
+http://sp23ct-ravem-biz-zulok-pelun.pages.dev/
+http://zunqari-mpt-xavfelo-h6d4pe82.pages.dev/
+
+2. NORMAL WEBSITE
+-----------------
+https://www.google.com/
+
+Expected: URL model runs and OpenPhish lookup completes.
+No OpenPhish match is not proof that a website is safe.
+
+3. SUSPICIOUS MESSAGE
+---------------------
+Your account will be suspended in 15 minutes. Reply with your password and the verification code we just sent you to keep your account active.
+
+Expected: Message model runs; it should flag this as suspicious or high risk.
+This is a synthetic sample. No OpenPhish lookup is needed without a link.
+
+4. ORDINARY MESSAGE
+-------------------
+Hi, our meeting starts at 10 tomorrow. Please bring your notebook. No payment or account action is required.
+
+Expected: Message model runs and should return low risk.
+
+5. GIFT-CARD SCAM
+-----------------
+I'm in a meeting and cannot talk. Buy five gift cards worth R1,000 each and send me photos of the codes immediately. Keep this confidential. I will reimburse you.
+
+Expected: Message model should flag this as suspicious or high risk.
+
+6. SYNTHETIC LOOKALIKE ADDRESS
+------------------------------
+https://paypa1.example/login
+
+Expected: URL model runs. This reserved example address is a synthetic sample,
+not a confirmed malicious website or a guaranteed OpenPhish match.
+Specific impersonation claims require an implemented supporting check.
+
+7. MESSAGE WITH A KNOWN PHISHING LINK
+------------------------------------
+Your delivery is on hold. Confirm your details immediately:
+http://xunqelo-mpt-favzari-h4d8me63.pages.dev/
+
+Expected: Message and embedded link are checked. If the URL remains listed,
+OpenPhish should cause an Unsafe result with clear attribution.
+
+8. MULTIPLE LINKS
+------------------
+Please check these:
+https://www.google.com/
+http://xunqelo-mpt-favzari-h4d8me63.pages.dev/
+
+Expected: Both links are extracted. An OpenPhish match for either link should
+make the overall result Unsafe, regardless of the other link's model score.
+
+9. QR IMAGE UPLOAD
+------------------
+Create a QR image containing this exact text, then attach the image to Maso:
+http://xunqelo-mpt-favzari-h4d8me63.pages.dev/
+
+Expected: Maso decodes the URL, checks it, and reports the OpenPhish match if
+still listed. Decoding alone is not a completed safety check.
+This text file is not itself a QR image.
+
+10. EMAIL FILE UPLOAD
+---------------------
+Copy only the email below (from From: through the final sentence) into a new
+plain-text file named scam-test.eml. Preserve the blank line before the body.
+Attach that .eml file to Maso. Do not send the email.
+
+From: "Company Director" <director@example.com>
+Reply-To: payments@example.net
+To: employee@example.org
+Subject: Urgent confidential purchase
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+
+Buy five gift cards worth R1,000 each immediately.
+Reply with photos of the codes. Keep this confidential.
+
+Expected: Email uploads, its content reaches the model, and the message should
+be flagged. Sender mismatch detection is not yet fully connected.
+
+11. REQUEST OUTSIDE MASO'S PURPOSE
+----------------------------------
+Write a romantic poem about the moon.
+
+Expected: A brief explanation that Maso checks links, messages, emails and QR
+codes for scams, instead of answering the unrelated request.
+
+12. INVALID INPUT
+------------------
+Try each separately:
+- Empty submission.
+- Unsupported file type.
+- An image that contains no readable QR code.
+
+Expected: A clear error or blocked submission, never a Safe verdict.
+
+HOW TO RECORD RESULTS
+----------------------
+For each test, note:
+- Sample number.
+- Actual verdict.
+- Whether AI completed.
+- Whether OpenPhish completed, matched, failed, or was not applicable.
+- Whether the result explained the evidence accurately.
+- Time taken.
+
+LIMITS OF THESE TESTS
+---------------------
+Model expectations above are test targets, not guaranteed predictions.
+Record unexpected results as failures to investigate; do not change the
+expected label just to match the output.
+
+These samples test functionality, not overall model accuracy. Passing them
+does not prove every requirement in the project document is complete.
+Response time, concurrent capacity, privacy and independent detection accuracy
+need separate testing. A missing feed entry is not a safety guarantee.

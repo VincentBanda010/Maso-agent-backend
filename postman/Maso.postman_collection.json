@@ -1,0 +1,427 @@
+{
+  "info": {
+    "_postman_id": "5b93f1ff-1b35-4d54-ac93-1b950138f4a9",
+    "name": "Maso \u2014 Model Tests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Local Maso model tests. Start with start.cmd, import the environment, set api_key locally, and run model readiness first. Use a 45000 ms request timeout. Run requests sequentially: the model accepts one inference at a time. 503 is a model/capacity failure, not a phishing verdict."
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{api_key}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "1. Health",
+      "item": [
+        {
+          "name": "Process health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/health/live",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Process is live\", () => { pm.response.to.have.status(200); pm.expect(pm.response.json().status).to.eql(\"ok\"); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Model readiness \u2014 run first",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{base_url}}/health/ready",
+            "auth": {
+              "type": "noauth"
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Model is ready\", () => { pm.response.to.have.status(200); pm.expect(pm.response.json().ai, \"Install and configure the model before analysis\").to.eql(\"ready\"); });"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Model analysis",
+      "description": "These are qualitative probes, not an accuracy benchmark. No expected class is asserted. Bare URLs are outside the email model's validated scope. Requests do not visit submitted links.",
+      "item": [
+        {
+          "name": "Ordinary message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/v1/analyze",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Hi Alex, our team meeting is tomorrow at 10. Please bring your notes. See you then.\",\n  \"expand_links\": false,\n  \"external_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Model inference succeeded\", () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200) {",
+                  " const r = pm.response.json();",
+                  " pm.test(\"AI completed without rules\", () => { pm.expect(r.checks.ai).to.eql(\"completed\"); pm.expect(r.checks).not.to.have.property(\"rules\"); });",
+                  " pm.test(\"Valid model verdict\", () => { pm.expect(r.risk_level).to.be.oneOf([\"Safe\", \"Suspicious\", \"Dangerous\"]); pm.expect(r.score).to.be.a(\"number\").within(0,100); pm.expect(r.score % 1).to.eql(0); });",
+                  " pm.test(\"Verdict color matches\", () => pm.expect(r.color).to.eql({Safe:\"green\", Suspicious:\"yellow\", Dangerous:\"red\"}[r.risk_level]));",
+                  " pm.test(\"Network checks were not requested\", () => { pm.expect(r.checks.link_expansion).to.eql(\"not_requested\"); pm.expect(r.checks.threat_intelligence).to.eql(\"not_requested\"); });",
+                  " pm.test(\"Limitations disclosed\", () => pm.expect(r.limitations).to.be.an(\"array\").that.is.not.empty);",
+                  " console.log(\"Model result\", {risk_level:r.risk_level, score:r.score, elapsed_ms:r.elapsed_ms});",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Phishing example",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/v1/analyze",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Your mailbox is full. Your account will be suspended today. Confirm your password immediately at https://account-verify.example.com/login to keep access.\",\n  \"expand_links\": false,\n  \"external_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Model inference succeeded\", () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200) {",
+                  " const r = pm.response.json();",
+                  " pm.test(\"AI completed without rules\", () => { pm.expect(r.checks.ai).to.eql(\"completed\"); pm.expect(r.checks).not.to.have.property(\"rules\"); });",
+                  " pm.test(\"Valid model verdict\", () => { pm.expect(r.risk_level).to.be.oneOf([\"Safe\", \"Suspicious\", \"Dangerous\"]); pm.expect(r.score).to.be.a(\"number\").within(0,100); pm.expect(r.score % 1).to.eql(0); });",
+                  " pm.test(\"Verdict color matches\", () => pm.expect(r.color).to.eql({Safe:\"green\", Suspicious:\"yellow\", Dangerous:\"red\"}[r.risk_level]));",
+                  " pm.test(\"Network checks were not requested\", () => { pm.expect(r.checks.link_expansion).to.eql(\"not_requested\"); pm.expect(r.checks.threat_intelligence).to.eql(\"not_requested\"); });",
+                  " pm.test(\"Limitations disclosed\", () => pm.expect(r.limitations).to.be.an(\"array\").that.is.not.empty);",
+                  " console.log(\"Model result\", {risk_level:r.risk_level, score:r.score, elapsed_ms:r.elapsed_ms});",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Payment scam example",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/v1/analyze",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"Keep this confidential. I need you to purchase gift cards immediately and send me the codes. Do not call me; I am in a meeting.\",\n  \"expand_links\": false,\n  \"external_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Model inference succeeded\", () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200) {",
+                  " const r = pm.response.json();",
+                  " pm.test(\"AI completed without rules\", () => { pm.expect(r.checks.ai).to.eql(\"completed\"); pm.expect(r.checks).not.to.have.property(\"rules\"); });",
+                  " pm.test(\"Valid model verdict\", () => { pm.expect(r.risk_level).to.be.oneOf([\"Safe\", \"Suspicious\", \"Dangerous\"]); pm.expect(r.score).to.be.a(\"number\").within(0,100); pm.expect(r.score % 1).to.eql(0); });",
+                  " pm.test(\"Verdict color matches\", () => pm.expect(r.color).to.eql({Safe:\"green\", Suspicious:\"yellow\", Dangerous:\"red\"}[r.risk_level]));",
+                  " pm.test(\"Network checks were not requested\", () => { pm.expect(r.checks.link_expansion).to.eql(\"not_requested\"); pm.expect(r.checks.threat_intelligence).to.eql(\"not_requested\"); });",
+                  " pm.test(\"Limitations disclosed\", () => pm.expect(r.limitations).to.be.an(\"array\").that.is.not.empty);",
+                  " console.log(\"Model result\", {risk_level:r.risk_level, score:r.score, elapsed_ms:r.elapsed_ms});",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Bare URL \u2014 exploratory",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/v1/analyze",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"https://example.com\",\n  \"expand_links\": false,\n  \"external_checks\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Model inference succeeded\", () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200) {",
+                  " const r = pm.response.json();",
+                  " pm.test(\"AI completed without rules\", () => { pm.expect(r.checks.ai).to.eql(\"completed\"); pm.expect(r.checks).not.to.have.property(\"rules\"); });",
+                  " pm.test(\"Valid model verdict\", () => { pm.expect(r.risk_level).to.be.oneOf([\"Safe\", \"Suspicious\", \"Dangerous\"]); pm.expect(r.score).to.be.a(\"number\").within(0,100); pm.expect(r.score % 1).to.eql(0); });",
+                  " pm.test(\"Verdict color matches\", () => pm.expect(r.color).to.eql({Safe:\"green\", Suspicious:\"yellow\", Dangerous:\"red\"}[r.risk_level]));",
+                  " pm.test(\"Network checks were not requested\", () => { pm.expect(r.checks.link_expansion).to.eql(\"not_requested\"); pm.expect(r.checks.threat_intelligence).to.eql(\"not_requested\"); });",
+                  " pm.test(\"Limitations disclosed\", () => pm.expect(r.limitations).to.be.an(\"array\").that.is.not.empty);",
+                  " console.log(\"Model result\", {risk_level:r.risk_level, score:r.score, elapsed_ms:r.elapsed_ms});",
+                  "}"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Validation and authentication",
+      "item": [
+        {
+          "name": "Empty input rejected",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/v1/analyze",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Empty input rejected\", () => pm.response.to.have.status(422));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Wrong API key rejected",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{base_url}}/api/v1/analyze",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key",
+                  "type": "string"
+                },
+                {
+                  "key": "value",
+                  "value": "intentionally-invalid-test-key",
+                  "type": "string"
+                },
+                {
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"content\": \"hello\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"API key enforced\", () => pm.response.to.have.status(401));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Uploads \u2014 select files before running",
+      "item": [
+        {
+          "name": "Email upload",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/v1/analyze/email?expand_links=false&external_checks=false",
+            "description": "Local sample file is preselected from C:/Projects/Maso/postman. If Postman blocks it, select it manually under Body > form-data > file.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "C:\\Projects\\Maso\\postman\\sample.eml"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Model inference succeeded\", () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200) {",
+                  " const r = pm.response.json();",
+                  " pm.test(\"AI completed without rules\", () => { pm.expect(r.checks.ai).to.eql(\"completed\"); pm.expect(r.checks).not.to.have.property(\"rules\"); });",
+                  " pm.test(\"Valid model verdict\", () => { pm.expect(r.risk_level).to.be.oneOf([\"Safe\", \"Suspicious\", \"Dangerous\"]); pm.expect(r.score).to.be.a(\"number\").within(0,100); pm.expect(r.score % 1).to.eql(0); });",
+                  " pm.test(\"Verdict color matches\", () => pm.expect(r.color).to.eql({Safe:\"green\", Suspicious:\"yellow\", Dangerous:\"red\"}[r.risk_level]));",
+                  " pm.test(\"Network checks were not requested\", () => { pm.expect(r.checks.link_expansion).to.eql(\"not_requested\"); pm.expect(r.checks.threat_intelligence).to.eql(\"not_requested\"); });",
+                  " pm.test(\"Limitations disclosed\", () => pm.expect(r.limitations).to.be.an(\"array\").that.is.not.empty);",
+                  " console.log(\"Model result\", {risk_level:r.risk_level, score:r.score, elapsed_ms:r.elapsed_ms});",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "QR upload",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{base_url}}/api/v1/analyze/qr?expand_links=false&external_checks=false",
+            "description": "Local sample file is preselected from C:/Projects/Maso/postman. If Postman blocks it, select it manually under Body > form-data > file.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "C:\\Projects\\Maso\\postman\\sample-qr.png"
+                }
+              ]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Model inference succeeded\", () => pm.response.to.have.status(200));",
+                  "if (pm.response.code === 200) {",
+                  " const r = pm.response.json();",
+                  " pm.test(\"AI completed without rules\", () => { pm.expect(r.checks.ai).to.eql(\"completed\"); pm.expect(r.checks).not.to.have.property(\"rules\"); });",
+                  " pm.test(\"Valid model verdict\", () => { pm.expect(r.risk_level).to.be.oneOf([\"Safe\", \"Suspicious\", \"Dangerous\"]); pm.expect(r.score).to.be.a(\"number\").within(0,100); pm.expect(r.score % 1).to.eql(0); });",
+                  " pm.test(\"Verdict color matches\", () => pm.expect(r.color).to.eql({Safe:\"green\", Suspicious:\"yellow\", Dangerous:\"red\"}[r.risk_level]));",
+                  " pm.test(\"Network checks were not requested\", () => { pm.expect(r.checks.link_expansion).to.eql(\"not_requested\"); pm.expect(r.checks.threat_intelligence).to.eql(\"not_requested\"); });",
+                  " pm.test(\"Limitations disclosed\", () => pm.expect(r.limitations).to.be.an(\"array\").that.is.not.empty);",
+                  " console.log(\"Model result\", {risk_level:r.risk_level, score:r.score, elapsed_ms:r.elapsed_ms});",
+                  "}"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

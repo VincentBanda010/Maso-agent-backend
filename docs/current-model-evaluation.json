@@ -1,0 +1,151 @@
+{
+  "limitations": "Small curated diagnostic set, not a held-out accuracy benchmark. Expected scam labels are manual; benign message controls are synthetic. Training overlap is unknown. Network checks were disabled. Errors are not correct classifications.",
+  "matched": 14,
+  "total": 16,
+  "cases": [
+    {
+      "id": "advance-fee",
+      "expected": "phishing",
+      "risk_level": "Dangerous",
+      "score": 100,
+      "safety_status": "high_risk",
+      "matched_expected_label": true,
+      "elapsed_ms": 114
+    },
+    {
+      "id": "parcel-payment",
+      "expected": "phishing",
+      "risk_level": "Dangerous",
+      "score": 100,
+      "safety_status": "high_risk",
+      "matched_expected_label": true,
+      "elapsed_ms": 118
+    },
+    {
+      "id": "delivery-reschedule",
+      "expected": "phishing",
+      "risk_level": "Dangerous",
+      "score": 100,
+      "safety_status": "high_risk",
+      "matched_expected_label": true,
+      "elapsed_ms": 108
+    },
+    {
+      "id": "compensation",
+      "expected": "phishing",
+      "risk_level": "Dangerous",
+      "score": 100,
+      "safety_status": "high_risk",
+      "matched_expected_label": true,
+      "elapsed_ms": 383
+    },
+    {
+      "id": "inheritance",
+      "expected": "phishing",
+      "risk_level": "Dangerous",
+      "score": 100,
+      "safety_status": "high_risk",
+      "matched_expected_label": true,
+      "elapsed_ms": 73
+    },
+    {
+      "id": "investment-lure",
+      "expected": "phishing",
+      "risk_level": "Dangerous",
+      "score": 99,
+      "safety_status": "high_risk",
+      "matched_expected_label": true,
+      "elapsed_ms": 62
+    },
+    {
+      "id": "benign-meeting",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 0,
+      "safety_status": "checks_passed",
+      "matched_expected_label": true,
+      "elapsed_ms": 39
+    },
+    {
+      "id": "benign-password-guidance",
+      "expected": "benign",
+      "risk_level": "Suspicious",
+      "score": 82,
+      "safety_status": "suspicious",
+      "matched_expected_label": false,
+      "elapsed_ms": 41
+    },
+    {
+      "id": "benign-invoice-discussion",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 0,
+      "safety_status": "checks_passed",
+      "matched_expected_label": true,
+      "elapsed_ms": 42
+    },
+    {
+      "id": "benign-delivery-update",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 31,
+      "safety_status": "checks_passed",
+      "matched_expected_label": true,
+      "elapsed_ms": 37
+    },
+    {
+      "id": "https://www.wikipedia.org",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 1,
+      "safety_status": "unverified",
+      "matched_expected_label": true,
+      "elapsed_ms": 10
+    },
+    {
+      "id": "https://www.google.com",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 7,
+      "safety_status": "unverified",
+      "matched_expected_label": true,
+      "elapsed_ms": 9
+    },
+    {
+      "id": "https://example.com",
+      "expected": "benign",
+      "risk_level": "Dangerous",
+      "score": 99,
+      "safety_status": "high_risk",
+      "matched_expected_label": false,
+      "elapsed_ms": 8
+    },
+    {
+      "id": "https://www.microsoft.com",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 30,
+      "safety_status": "unverified",
+      "matched_expected_label": true,
+      "elapsed_ms": 10
+    },
+    {
+      "id": "https://www.bbc.com",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 18,
+      "safety_status": "unverified",
+      "matched_expected_label": true,
+      "elapsed_ms": 10
+    },
+    {
+      "id": "https://www.gov.za",
+      "expected": "benign",
+      "risk_level": "Safe",
+      "score": 0,
+      "safety_status": "unverified",
+      "matched_expected_label": true,
+      "elapsed_ms": 7
+    }
+  ]
+}

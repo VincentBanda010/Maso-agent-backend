@@ -1,0 +1,42 @@
+[
+  {
+    "input": "https://www.wikipedia.org",
+    "phishing_confidence": 0.009070946834981441
+  },
+  {
+    "input": "https://www.google.com",
+    "phishing_confidence": 0.06525840610265732
+  },
+  {
+    "input": "https://example.com",
+    "phishing_confidence": 0.9940872192382812
+  },
+  {
+    "input": "https://www.microsoft.com",
+    "phishing_confidence": 0.2974541485309601
+  },
+  {
+    "input": "https://paypal.com.account-verify.example.com/login",
+    "phishing_confidence": 0.9998644590377808
+  },
+  {
+    "input": "https://microsoft-password-reset.example.com/verify",
+    "phishing_confidence": 0.9994495511054993
+  },
+  {
+    "input": "http://192.0.2.1/login",
+    "phishing_confidence": 0.7396529912948608
+  },
+  {
+    "input": "https://example.com@account-check.example.org/verify",
+    "phishing_confidence": 0.999803364276886
+  },
+  {
+    "input": "Hi Alex, our meeting is tomorrow at 10. Please bring your notes. See you then.",
+    "phishing_confidence": 0.00014835332694929093
+  },
+  {
+    "input": "I'm your manager. Buy five gift cards immediately and send me the codes. Keep this confidential and do not call me.",
+    "phishing_confidence": 0.9949629306793213
+  }
+]

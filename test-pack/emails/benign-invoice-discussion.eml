@@ -1,0 +1,9 @@
+From: colleague@example.invalid
+To: tester@example.invalid
+Subject: Invoice discussion
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+
+Could you confirm whether invoice 1042 was received? There is no change to ou=
+r bank details. Please use our usual contact number if you have questions.
